@@ -1,8 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+public class MutantMachine : System.Object {
+
+	public Texture graphicTexture;
+	public int range;
+	public int health;
+	public int strength;
+}
+
 public class Done_GameController : MonoBehaviour
 {
+	// array of mutant machines
+	public MutantMachine[] machines;
+
 	public GameObject[] hazards;
 	public Vector3 spawnValues;
 	public int hazardCount;
