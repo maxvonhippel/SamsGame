@@ -8,6 +8,9 @@ public class MutantMachine : System.Object {
 	public int range;
 	public int health;
 	public int strength;
+	public string name;
+	public int cost;
+	public AudioClip shootSound;
 }
 
 public class Done_GameController : MonoBehaviour
