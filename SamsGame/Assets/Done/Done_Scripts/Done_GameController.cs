@@ -3,27 +3,51 @@ using System;
 using System.Collections;
 using System.Timers;
 
-[System.Serializable]
+[System.Serializable]	// makes it so the Unity Editor can see this type
 public class MutantMachine : System.Object {
-
+	// graphicTexture is the texture of the drawing Sam did of the ship in question
 	public Texture graphicTexture;
+	// range in feet it can shoot
 	public int range;
+	// health rating out of ten
 	public int health;
+	// strength rating out of ten
 	public int strength;
+	// name of the ship
 	public string name;
+	// cost of the ship in United States Dollars
 	public int cost;
+	// sound of the ship shooting
 	public AudioClip shootSound;
+}
+
+[System.Serializable]	// makes it so the Unity Editor can see this type
+public class ObjectThatCanHitYou : System.Object {
+	// graphicTexture is the drawing Sam made of the object you can hit
+	public Texture graphicTexture;
+	// if damage < 0, then it subtracts that many points from the HEALTH of the player it hits
+	// if damage > 0, then it adds that many points to HEALTH of player it hits
+	public int damage;
+	// if strength < 0, then it subtracts that many points from the STRENGTH of the player it hits
+	// if strength > 0, then it adds that many points to the STRENGTH of the player it hits
+	public int strength;
+	// if money > 0, then it adds MONEY amount to the points of the player
+	public int money;
 }
 
 public class Done_GameController : MonoBehaviour
 {
+	// array of objects that can hit you
+	public ObjectThatCanHitYou[] objectsThatCanHitYou;
 	// array of mutant machines
 	public MutantMachine[] machines;
 	// array of hazards of all types
 	public GameObject[] hazards;
 	// array of backgrounds for the game
 	public Texture[] backgrounds;
+	// the current background texture, which changes over time
 	public GameObject curBackground;
+	// the number of the background we are currently on in the array of backgrounds
 	private int nBackground;
 
 	public GameObject graphicsPrefab;
