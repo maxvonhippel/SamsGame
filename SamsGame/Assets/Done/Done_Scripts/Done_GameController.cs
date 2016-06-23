@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Timers;
 
 [System.Serializable]	// makes it so the Unity Editor can see this type
@@ -33,6 +34,8 @@ public class ObjectThatCanHitYou : System.Object {
 	public int strength;
 	// if money > 0, then it adds MONEY amount to the points of the player
 	public int money;
+	// the name of the object
+	public string name;
 }
 
 public class Done_GameController : MonoBehaviour
@@ -49,7 +52,9 @@ public class Done_GameController : MonoBehaviour
 	public GameObject curBackground;
 	// the number of the background we are currently on in the array of backgrounds
 	private int nBackground;
-
+	// the dictionary which matches game objects to mutant machines and/or objects that can hit you
+	private IDictionary<GameObject, string> hazardToDefinition = new Dictionary<GameObject, string>();
+	// the prefab we use for 2d graphics assets
 	public GameObject graphicsPrefab;
 
 	public Vector3 spawnValues;
@@ -144,9 +149,20 @@ public class Done_GameController : MonoBehaviour
 					graphic.transform.Rotate(0, 180, 0);
 					graphic.GetComponent<MeshRenderer> ().material.mainTexture = curMachine.graphicTexture;
 					graphic.transform.parent = hazard.transform;
+					hazardToDefinition.Add (hazard, curMachine.name);
 
 				} else {
 					// assign a comet or other such random item to the picture
+					hazard.layer = 5;
+					SetLayerRecursively (hazard, 5);
+					// randomly select a hazard of some sort (a thing you can hit)
+					ObjectThatCanHitYou curObject = objectsThatCanHitYou [ UnityEngine.Random.Range(0, objectsThatCanHitYou.Length)];
+					// next, make the hazard have a picture of the object that can hit you
+					GameObject graphic = Instantiate (graphicsPrefab, spawnPosition, spawnRotation) as GameObject;
+					graphic.transform.Rotate (0, 180, 0);
+					graphic.GetComponent<MeshRenderer> ().material.mainTexture = curObject.graphicTexture;
+					graphic.transform.parent = hazard.transform;
+					hazardToDefinition.Add (hazard, curObject.name);
 
 				}
 				yield return new WaitForSeconds (spawnWait);

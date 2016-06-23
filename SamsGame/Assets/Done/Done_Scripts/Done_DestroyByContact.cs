@@ -23,6 +23,9 @@ public class Done_DestroyByContact : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
+		// 1. we want to figure out if this is a mutant machine, or a object you can hit
+		// 2. we want to update all of the variables of the current player accordingly
+		// 3. if the player thus dies, then we want to destroy the player
 		if (other.tag == "Boundary" || other.tag == "Enemy")
 		{
 			return;
