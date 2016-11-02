@@ -1,5 +1,7 @@
 # SamsGame
-This is an arcade style space shooter video game built by Max von Hippel (19) and Sam von Hippel (9).
+This is an arcade style space shooter video game built by Max von Hippel (born 1996) and Sam von Hippel (born 2006).
+
+TO BE VERY CLEAR, this is something I am doing for fun, occaisionally, on the weekends, with my brother.  It is not meant to be in any way a demonstration of my sick hacker skillz or coding finnese.  If you are an employer looking to see if I really have those nifty coding chops I claim to have, check out my other work, like the dope html-hacking Amazon SDK I made, or my contribution to PruneCluster, or whatever else you see in my profile, or look at my Stack Overflow.  This repo is for entertainment purposes only.
 
 # License
 You do not have permission to use this game for any project until after I have published Sam's Game on the iOS App Store.
